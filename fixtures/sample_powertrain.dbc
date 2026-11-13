@@ -1,0 +1,17 @@
+VERSION "0.1"
+
+NS_ :
+
+BS_:
+
+BU_: EngineECU BrakeECU Gateway Dashboard
+
+BO_ 256 EngineData: 8 EngineECU
+ SG_ EngineRPM : 0|16@1+ (0.25,0) [0|8000] "rpm" Gateway,Dashboard
+ SG_ EngineCoolantTemp : 16|8@1- (1,-40) [-40|150] "degC" Gateway
+ SG_ ThrottlePosition : 24|8@1+ (0.392,0) [0|100] "%" Gateway
+
+BO_ 512 ChassisDynamics: 8 BrakeECU
+ SG_ VehicleSpeed : 0|16@1+ (0.01,0) [0|250] "km/h" Gateway,Dashboard
+ SG_ BrakePressure : 16|12@1+ (0.1,0) [0|200] "bar" Gateway
+ SG_ SteeringAngle : 39|16@0- (0.1,0) [-500|500] "deg" Gateway

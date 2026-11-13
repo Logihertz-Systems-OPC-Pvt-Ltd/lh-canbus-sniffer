@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Build, Lint & Test (Rust 2021)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Verify Code Formatting
+        run: cargo fmt --check
+
+      - name: Lint with Clippy (#![forbid(unsafe_code)] & -D warnings)
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Run Test Suite (65+ Test Cases / 95+ Assertions)
+        run: cargo test --verbose
+
+      - name: Verify CLI Executable & Subcommands
+        run: |
+          cargo run --bin lh-canbus -- --version
+          cargo run --bin lh-canbus -- --help
+          cargo run --bin lh-canbus -- scan fixtures/hardened_canbus_policy.json --format table
+          cargo run --bin lh-canbus -- scan fixtures/hardened_canbus_policy.json --format json
+          cargo run --bin lh-canbus -- scan fixtures/hardened_canbus_policy.json --format sarif
+          cargo run --bin lh-canbus -- decode --dbc fixtures/sample_powertrain.dbc --frame 100#1027140000000000
+          cargo run --bin lh-canbus -- verify-crc 1027140000000000

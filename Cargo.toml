@@ -1,0 +1,23 @@
+[package]
+name = "lh-canbus-sniffer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Sameer Tawade <ops@logihertz.com>"]
+description = "Production-grade, zero-dependency Rust 2021 Automotive & Industrial SocketCAN Real-Time Packet Sniffer, DBC Signal Decoder, Frame Injection Anomaly Detector, and 10-Rule CAN Bus Security Posture Auditor"
+license = "Apache-2.0"
+homepage = "https://logihertz.com/"
+repository = "https://github.com/Logihertz-Systems-OPC-Pvt-Ltd/lh-canbus-sniffer"
+readme = "README.md"
+keywords = ["canbus", "socketcan", "dbc", "automotive-security", "intrusion-detection"]
+categories = ["embedded", "network-programming", "development-tools"]
+
+[lib]
+name = "lh_canbus"
+path = "src/lib.rs"
+
+[[bin]]
+name = "lh-canbus"
+path = "src/main.rs"
+
+[dependencies]
+# 100% Zero External Dependencies - Rust Standard Library (std) only.
