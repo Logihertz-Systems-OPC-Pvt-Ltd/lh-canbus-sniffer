@@ -1,0 +1,9 @@
+Package: lh-canbus-sniffer
+Version: 0.1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Sameer Tawade <ops@logihertz.com>
+Homepage: https://www.logihertz.com
+Description: lh-canbus - Bosch CAN 2.0B CRC-15 Cyclic Redundancy Polynomial
+ Memory-safe pure-Rust automotive & industrial SocketCAN real-time packet analyzer, DBC (BO_/SG_) Intel/Motorola bit-field decoder, Bosch CRC-15 verifier, UDS (ISO 14229) IDS, and CAN bus posture auditor.
